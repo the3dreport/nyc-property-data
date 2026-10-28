@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Property — NYC Property Data</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <a class="brand" href="/">
+        <div class="brand-mark">N</div>
+        <span>NYC Property Data</span>
+      </a>
+      <form class="mini-search" id="mini-search">
+        <input id="mini-q" type="search" placeholder="New address or BBL…" />
+        <button class="btn" type="submit">Go</button>
+      </form>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" onclick="alert('Accounts coming soon')">Log in</button>
+        <button class="btn btn-primary" onclick="alert('Sign-up coming soon')">Sign up</button>
+      </div>
+    </nav>
+
+    <div id="page-loading" class="loading"><div class="spinner"></div> Loading property dossier…</div>
+    <div id="page-error" class="error" hidden></div>
+
+    <div id="page-content" hidden>
+      <header class="prop-header">
+        <div class="prop-title">
+          <h1 id="addr">—</h1>
+          <div class="sub" id="subline"></div>
+          <div class="stat-grid" id="stats"></div>
+        </div>
+        <div id="map"></div>
+      </header>
+
+      <div class="tabs" id="tabs">
+        <button class="tab active" data-tab="overview">Overview</button>
+        <button class="tab" data-tab="assessment">Assessment</button>
+        <button class="tab" data-tab="acris">ACRIS / Deeds</button>
+        <button class="tab" data-tab="dob">DOB Permits &amp; Jobs</button>
+        <button class="tab" data-tab="violations">Violations</button>
+        <button class="tab" data-tab="hpd">HPD / Contacts</button>
+        <button class="tab" data-tab="owner">Owner</button>
+      </div>
+
+      <section class="panel" id="panel-overview"></section>
+      <section class="panel" id="panel-assessment" hidden></section>
+      <section class="panel" id="panel-acris" hidden></section>
+      <section class="panel" id="panel-dob" hidden></section>
+      <section class="panel" id="panel-violations" hidden></section>
+      <section class="panel" id="panel-hpd" hidden></section>
+      <section class="panel" id="panel-owner" hidden>
+        <div class="loading"><div class="spinner"></div> Resolving owner identities &amp; portfolio…</div>
+      </section>
+    </div>
+
+    <footer class="footer">Live data via NYC Open Data Socrata APIs. Prototype.</footer>
+  </div>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/js/app.js"></script>
+  <script src="/static/js/property.js"></script>
+</body>
+</html>

@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>NYC Property Data — Research any NYC tax lot</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/css/styles.css" />
+</head>
+<body>
+  <div class="container">
+    <nav class="nav">
+      <div class="brand">
+        <div class="brand-mark">N</div>
+        <span>NYC Property Data</span>
+      </div>
+      <div class="nav-actions">
+        <button class="btn btn-ghost" id="btn-login" title="Coming soon">Log in</button>
+        <button class="btn btn-primary" id="btn-signup" title="Coming soon">Sign up free</button>
+      </div>
+    </nav>
+
+    <section class="hero">
+      <div class="badge-row">
+        <span class="badge">All five boroughs</span>
+        <span class="badge">Live NYC Open Data</span>
+        <span class="badge">ACRIS · PLUTO · DOB · HPD · DOF</span>
+      </div>
+      <h1>Property intelligence for every NYC tax lot</h1>
+      <p class="lead">
+        Look up ownership, sales &amp; mortgages, assessments, permits, and housing violations —
+        the public-records core behind sites like PropertyShark, in one place.
+      </p>
+
+      <div class="search-shell">
+        <form class="search-row" id="search-form" autocomplete="off">
+          <input id="q" type="search" placeholder="Search address or BBL (e.g. 350 5th Ave, Manhattan)" autofocus />
+          <button class="btn btn-primary" type="submit">Search</button>
+        </form>
+        <div class="results" id="results" hidden></div>
+      </div>
+      <p class="lead" style="margin-top:14px;font-size:13px;color:#6b7a94">
+        Try: <a href="#" data-q="350 5th Ave, Manhattan">350 5th Ave</a> ·
+        <a href="#" data-q="234 Bergen Street, Brooklyn">234 Bergen St, Brooklyn</a> ·
+        <a href="#" data-q="3620 Webster Avenue, Bronx">3620 Webster Ave, Bronx</a> ·
+        <a href="#" data-q="1008350041">BBL 1008350041</a>
+      </p>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <h3>Lot &amp; zoning</h3>
+        <p>PLUTO lot size, building area, year built, zoning districts, FAR, and landmark status.</p>
+      </div>
+      <div class="feature">
+        <h3>Deeds &amp; mortgages</h3>
+        <p>ACRIS recorded documents with parties, amounts, and dates — sorted newest first.</p>
+      </div>
+      <div class="feature">
+        <h3>DOB &amp; HPD</h3>
+        <p>Permits, job filings, violations, HPD contacts, and an Owner tab that finds other lots under the same names.</p>
+      </div>
+      <div class="feature">
+        <h3>Built for a public launch</h3>
+        <p>Free search today. Accounts, usage limits, and a Pro tier are scaffolded for later.</p>
+      </div>
+    </section>
+
+    <section class="pricing-teaser">
+      <h2>Coming soon: accounts &amp; Pro</h2>
+      <p>This prototype is open. The API is structured so we can add sign-up, free-tier caps, and paid unlocks without rewriting the data layer.</p>
+      <div class="tier-row">
+        <div class="tier"><strong>Free</strong><span>Limited daily searches &amp; property views</span></div>
+        <div class="tier"><strong>Pro</strong><span>Unlimited lookups, saved lists, owner phone skip-trace (paid API)</span></div>
+        <div class="tier"><strong>Team</strong><span>Shared workspaces &amp; bulk BBL export</span></div>
+      </div>
+    </section>
+
+    <footer class="footer">
+      Data from NYC Open Data &amp; NYC Planning GeoSearch. Not affiliated with PropertyShark or city agencies.
+      Prototype — verify critical facts against primary sources.
+    </footer>
+  </div>
+  <script src="/static/js/app.js"></script>
+  <script>
+    document.getElementById("btn-login").addEventListener("click", () => {
+      alert("Accounts are coming soon. The backend already has auth / paid-tier stubs.");
+    });
+    document.getElementById("btn-signup").addEventListener("click", () => {
+      alert("Sign-up will land with the public launch. For now, search any NYC address below.");
+    });
+    document.querySelectorAll("[data-q]").forEach((a) => {
+      a.addEventListener("click", (e) => {
+        e.preventDefault();
+        const q = a.getAttribute("data-q");
+        document.getElementById("q").value = q;
+        window.NYCProp.runSearch(q);
+      });
+    });
+  </script>
+</body>
+</html>

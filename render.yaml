@@ -1,0 +1,7 @@
+services:
+  - type: web
+    name: nyc-property-data
+    runtime: python
+    plan: free
+    buildCommand: pip install -r backend/requirements.txt
+    startCommand: PYTHONPATH=. uvicorn backend.app.main:app --host 0.0.0.0 --port $PORT
